@@ -18,7 +18,7 @@ public class MonthlyWeatherMapredMain {
 
 			Configuration config = HBaseConfiguration.create();
 			config.set("mapred.output.dir",
-					"/mnt/data/workspace/weatheranalysis/mapred_month");
+					"/mnt/data/workspace/weatheranalysis/mapred/monthly");
 			Job job = new Job(config, "MonthlySummary");
 
 			String sourceTable = DailyWeatherHbaseOperations.TABLE_NAME;
