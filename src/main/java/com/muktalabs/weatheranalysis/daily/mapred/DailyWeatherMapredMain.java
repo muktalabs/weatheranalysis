@@ -34,7 +34,7 @@ public class DailyWeatherMapredMain {
 		job.setOutputValueClass(Text.class);
 
 		FileInputFormat.addInputPath(job, new Path(
-				"/mnt/data/workspace/weatheranalysis/data/2015"));
+				"/mnt/data/workspace/weatheranalysis/data/2014"));
 		Path out = new Path("/mnt/data/workspace/weatheranalysis/mapred/daily");
 		File outDir = new File(out.toString());
 		FileUtil.fullyDelete(outDir);
@@ -45,7 +45,7 @@ public class DailyWeatherMapredMain {
 		job.waitForCompletion(true);
 		System.out.println("Job Completed.");
 
-		testRecords();
+		//testRecords();
 	}
 
 	private static void testRecords() throws IOException {

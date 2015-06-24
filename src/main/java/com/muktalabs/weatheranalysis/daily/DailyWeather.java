@@ -30,6 +30,7 @@ public class DailyWeather {
 	private int year = 0;
 	private int month = 0;
     private int day = 0;
+    
 	private float minTemp = 0; 
 	private float maxTemp = 0; 
 	private float avgTemp = 0; 
@@ -176,7 +177,7 @@ public class DailyWeather {
 
 	@Override
 	public String toString() {
-		return "MonthlyTemperature [stationCode=" + stationCode + ", year="
+		return "DailyWeather [stationCode=" + stationCode + ", year="
 				+ year + ", month=" + month + ",day=" + day + ", minTemp=" + minTemp
 				+ ", maxTemp=" + maxTemp + ", avgTemp=" + avgTemp
 				+ ", precipitation=" + precipitation

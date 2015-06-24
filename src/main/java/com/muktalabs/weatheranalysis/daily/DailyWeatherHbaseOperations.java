@@ -20,7 +20,7 @@ import org.apache.hadoop.hbase.util.Bytes;
 public class DailyWeatherHbaseOperations {
 
 	private static Configuration conf = null;
-	public static final String TABLE_NAME = "DailyTemperature";
+	public static final String TABLE_NAME = "DailyWeather";
 	public static final byte[] DAYLIGHT_FAMILY = Bytes.toBytes("daylight");
 	public static final byte[] FULLDAY_FAMILY = Bytes.toBytes("fullday");
 

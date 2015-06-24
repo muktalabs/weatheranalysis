@@ -147,7 +147,7 @@ public class MonthlyWeather {
 
 	@Override
 	public String toString() {
-		return "MonthlyTemperature [stationCode=" + stationCode + ", year="
+		return "MonthlyWeather [stationCode=" + stationCode + ", year="
 				+ year + ", month=" + month  + ", minTemp=" + minTemp
 				+ ", maxTemp=" + maxTemp + ", avgTemp=" + avgTemp
 				+ ", precipitation=" + precipitation

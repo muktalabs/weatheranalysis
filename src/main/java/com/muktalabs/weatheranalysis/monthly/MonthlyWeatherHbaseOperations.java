@@ -22,7 +22,7 @@ import com.muktalabs.weatheranalysis.monthly.MonthlyWeather;
 public class MonthlyWeatherHbaseOperations {
 
 	private static Configuration conf = null;
-	public static final String TABLE_NAME = "MonthlyTemperature";
+	public static final String TABLE_NAME = "MonthlyWeather";
 	public static final byte[] DAYLIGHT_FAMILY = Bytes.toBytes("daylight");
 	public static final byte[] FULLDAY_FAMILY = Bytes.toBytes("fullday");
 

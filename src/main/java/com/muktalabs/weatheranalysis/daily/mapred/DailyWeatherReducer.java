@@ -1,7 +1,8 @@
 package com.muktalabs.weatheranalysis.daily.mapred;
 
 import java.io.IOException;
-import java.util.StringTokenizer;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -17,75 +18,43 @@ public class DailyWeatherReducer extends Reducer<Text, Text, IntWritable, Text> 
 		// String keytxt = st + "|" + y1 + "|" + m1 + "|" + d1;
 		// String value = temp + "|" + dewpt + "|" + ppt;
 
-		System.out.println("Reducer: key=" + key.toString());
-		try {
-			process(key, values);
-		} catch (Exception e) {
-			System.out.println("Error in reducer: ");
-			e.printStackTrace();
-		}
+		DailyWeather daily = new DailyWeather();
 
-		//context.write(new IntWritable(1), new Text(dailyweather.toString()));
-	}
-
-	private void process(Text key, Iterable<Text> values) throws Exception {
-		DailyWeather dailyweather = new DailyWeather();
-
-		int yr=0, mn=0, dy=0;
+		int yr = 0, mn = 0, day=0;
 		String w = key.toString();
 		String[] fArr = w.split(",");
 		int stationcode = Integer.parseInt(fArr[0]);
 		yr = Integer.parseInt(fArr[1]);
 		mn = Integer.parseInt(fArr[2]);
-		dy = Integer.parseInt(fArr[3]);
-		
-		dailyweather.setStationCode(stationcode);
-		dailyweather.setYear(yr);
-		dailyweather.setMonth(mn);
-		dailyweather.setDay(dy);
+		day = Integer.parseInt(fArr[3]);
 
-		byte sum = 0;
-		float sumTemp = 0, counter = 0, sumDew = 0, sumPpt = 0, maxTemp = 0, minTemp = 1000;
-		float avgTemp, TotalPpt, avgDew;
-		for (Text val : values) {
-			String g = val.toString();
-			StringTokenizer daily = new StringTokenizer(g, ",");
-			int r = 0;
-			while (daily.hasMoreTokens()) {
-				float parse = Float.parseFloat(daily.nextToken());
-				if (r == 0) {
-					float localTemp = parse;
-					
-					if (localTemp > maxTemp) {
-						maxTemp = localTemp;
-					}
-					if (localTemp < minTemp) {
-						minTemp = localTemp;
-					}
-					sumTemp = sumTemp + parse;
-				}
-				if (r == 1) {
-					sumDew = sumDew + parse;
-				}
-				if (r == 2) {
-					sumPpt = parse;
-				}
-				r++;
-			}
-			counter++;
+		daily.setStationCode(stationcode);
+		daily.setYear(yr);
+		daily.setMonth(mn);
+		daily.setDay(day);
+
+		System.out.println("Daily Reducer: key=" + key.toString());
+		try {
+			List<Float> l1 = new ArrayList<Float>();
+
+			l1 = WeatherCalculations.process1(key, values);
+			daily.setMinTemp(l1.get(0));
+			daily.setMaxTemp(l1.get(1));
+			daily.setAvgTemp(l1.get(2));
+			daily.setDewpoint(l1.get(3));
+			daily.setPrecipitation(l1.get(4));
+
+			System.out.println("Reducer: saving " + daily);
+			DailyWeatherHbaseOperations.addRecord(daily);
+		} catch (Exception e) {
+			System.out.println("Error in reducer: ");
+			e.printStackTrace();
 		}
-		avgTemp = sumTemp / counter;
-		avgDew = sumDew / counter;
-		TotalPpt = sumPpt;
 
-		dailyweather.setMinTemp(minTemp);
-		dailyweather.setMaxTemp(maxTemp);
-		dailyweather.setAvgTemp(avgTemp);
-		dailyweather.setPrecipitation(TotalPpt);
-		dailyweather.setDewpoint(avgDew);
-
-		System.out.println("Reducer: saving " + dailyweather);
-		DailyWeatherHbaseOperations.addRecord(dailyweather);
+		// context.write(new IntWritable(1), new Text(monthly.toString()));
 	}
 
+	// String keytxt = st + "," + y1 + "," + m1;
+	// String valuetxt = min + "," + max + "," + avg + "," + dewpt + "," + ppt;
+	// System.out.println("Key="+key.toString());
 }

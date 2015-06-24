@@ -1,18 +1,23 @@
 package com.muktalabs.weatheranalysis.monthly.mapred;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileUtil;
+import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.mapreduce.TableMapReduceUtil;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 import com.muktalabs.weatheranalysis.daily.DailyWeatherHbaseOperations;
+import com.muktalabs.weatheranalysis.monthly.MonthlyWeatherHbaseOperations;
 
 public class MonthlyWeatherMapredMain {
-	public static void main(String args[]) {
+	public static void main(String args[]) throws Exception{
 
 		try {
 
@@ -40,6 +45,18 @@ public class MonthlyWeatherMapredMain {
 			job.setReducerClass(MonthlyWeatherReducer.class); // reducer class
 			job.setNumReduceTasks(1); // at least one, adjust as required
 
+			Path out = new Path("/mnt/data/workspace/weatheranalysis/mapred/monthly");
+			File outDir = new File(out.toString());
+			FileUtil.fullyDelete(outDir);
+			FileOutputFormat.setOutputPath(job, out);
+
+			MonthlyWeatherHbaseOperations.useTable();
+
+			job.waitForCompletion(true);
+			System.out.println("Job Completed.");
+
+			
+			
 			boolean b = job.waitForCompletion(true);
 			if (!b) {
 				throw new IOException("error with job!");
