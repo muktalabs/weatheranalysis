@@ -2,11 +2,15 @@ package com.muktalabs.weatheranalysis.monthly.mapred;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileUtil;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.mapreduce.TableMapReduceUtil;
 import org.apache.hadoop.io.Text;
@@ -14,6 +18,7 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 import com.muktalabs.weatheranalysis.daily.DailyWeatherHbaseOperations;
+import com.muktalabs.weatheranalysis.monthly.MonthlyWeather;
 import com.muktalabs.weatheranalysis.monthly.MonthlyWeatherHbaseOperations;
 
 public class MonthlyWeatherMapredMain {
@@ -52,6 +57,21 @@ public class MonthlyWeatherMapredMain {
 
 			MonthlyWeatherHbaseOperations.useTable();
 
+			
+			//The required Total Precipitate for a particular station for an year
+			/* Manpreet Singh Tuteja*/
+			  
+		     /* List<Float> ForAllMonthsPpt = new ArrayList<Float>();
+			  List<MonthlyWeather> lr = MonthlyWeatherHbaseOperations.get(425010,2013);
+		        while(lr.isEmpty()) {  
+			    ForAllMonthsPpt.add(lr.get(4));
+		
+		}
+			 * 
+			 * 
+			 * 
+			 * 
+			 */
 			job.waitForCompletion(true);
 			System.out.println("Job Completed.");
 
