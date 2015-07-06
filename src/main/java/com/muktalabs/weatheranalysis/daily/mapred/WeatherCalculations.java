@@ -49,7 +49,7 @@ public class WeatherCalculations {
 					}
 					if (r == 4) {
 						sumPpt = sumPpt + parse;
-						System.out.println("precipitation: " + Ppt);
+						System.out.println("precipitation: " + sumPpt);
 					}
 					r++;
 				}

@@ -1,7 +1,6 @@
 package com.muktalabs.weatheranalysis.monthly.mapred;
 
 import java.io.IOException;
-
 import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.io.ImmutableBytesWritable;
 import org.apache.hadoop.hbase.mapreduce.TableMapper;
@@ -26,11 +25,16 @@ public class MonthlyWeatherMapper extends TableMapper<Text, Text> {
 		avg=daily.getAvgTemp();
 		dewpt=daily.getDewpoint();
 		ppt=daily.getPrecipitation();
-		String keytxt = st + "," + y1 + "," + m1;
+		
+		 String keytxt = st + "," + y1 + "," + m1;
 
 		String valuetxt = min + "," + max + "," + avg + "," + dewpt + "," + ppt;
 		
 		System.out.println("Monthly Mapper: key="+keytxt+", value="+valuetxt);
 		context.write(new Text(keytxt), new Text(valuetxt));
 	}
-}
+	}
+
+
+
+

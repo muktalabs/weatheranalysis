@@ -26,7 +26,7 @@ public class DailyWeatherMapper extends Mapper<Object, Text, Text, Text> {
 		
 		String yearmonthday = null;
 		int i = 0;
-
+       double temp1;
 		String station1 = null, yy = null, mm = null, dd = null, temp = null, dewpt = null, ppt = null;
 		Scanner sc = new Scanner(parsed);
 		while (sc.hasNext()) {
@@ -36,8 +36,14 @@ public class DailyWeatherMapper extends Mapper<Object, Text, Text, Text> {
 				yearmonthday = sc.next();
 			} else if (i == 21) {
 				temp = sc.next();
+					
 			if(temp.contains("*")){
 				temp="5555";
+			}
+			else{
+				temp1=Double.parseDouble(temp);
+				temp1=5*((temp1-32)/9);
+			temp=""+temp1;	
 			}
 			}else if (i == 22) {
 				dewpt = sc.next();

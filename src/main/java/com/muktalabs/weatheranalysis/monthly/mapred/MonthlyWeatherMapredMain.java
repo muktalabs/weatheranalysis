@@ -59,7 +59,7 @@ public class MonthlyWeatherMapredMain {
 
 			
 			//The required Total Precipitate for a particular station for an year
-			/* Manpreet Singh Tuteja*/
+			
 			  
 		     /* List<Float> ForAllMonthsPpt = new ArrayList<Float>();
 			  List<MonthlyWeather> lr = MonthlyWeatherHbaseOperations.get(425010,2013);
@@ -74,9 +74,7 @@ public class MonthlyWeatherMapredMain {
 			 */
 			job.waitForCompletion(true);
 			System.out.println("Job Completed.");
-
-			
-			
+				
 			boolean b = job.waitForCompletion(true);
 			if (!b) {
 				throw new IOException("error with job!");
