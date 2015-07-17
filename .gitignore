@@ -2,6 +2,7 @@
 .project
 .classpath
 target/
+logs/
 mapred-test/
 data/
 

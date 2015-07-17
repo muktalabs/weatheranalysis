@@ -28,7 +28,7 @@ public class MonthlyWeatherMapredMain {
 
 			Configuration config = HBaseConfiguration.create();
 			config.set("mapred.output.dir",
-					"/mnt/data/workspace/weatheranalysis/mapred/monthly");
+					"/mnt/data/workspace/weatheranalysis/mapred_test/monthly");
 			Job job = new Job(config, "MonthlySummary");
 
 			String sourceTable = DailyWeatherHbaseOperations.TABLE_NAME;
@@ -50,7 +50,7 @@ public class MonthlyWeatherMapredMain {
 			job.setReducerClass(MonthlyWeatherReducer.class); // reducer class
 			job.setNumReduceTasks(1); // at least one, adjust as required
 
-			Path out = new Path("/mnt/data/workspace/weatheranalysis/analysis/mapred/monthly");
+			Path out = new Path("/mnt/data/workspace/weatheranalysis/analysis/mapred_test/monthly");
 			File outDir = new File(out.toString());
 			FileUtil.fullyDelete(outDir);
 			FileOutputFormat.setOutputPath(job, out);
