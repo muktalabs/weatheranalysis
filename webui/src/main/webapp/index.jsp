@@ -1,6 +1,4 @@
-<%@page import="com.muktalabs.weatheranalysis.util.StationRetrival"%>
-<%@page import="java.util.HashMap"%>
-<%@page import="java.util.Map"%>
+<%@page import="java.util.*,com.muktalabs.weatheranalysis.util.StationRetrival"%>
 <html>
 <head>
 
@@ -12,7 +10,7 @@
 <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-<title>Free bootstrap corporate template</title>
+<title>WeatherAnalysis</title>
 <!-- BOOTSTRAP STYLE SHEET -->
 <link href="assets/css/bootstrap.css" rel="stylesheet" />
 <!-- FONT AWESOME ICONS STYLE SHEET -->
@@ -89,9 +87,8 @@ table#t01 th {
 				<div class="col-md-8 col-md-offset-2 text-center">
 
 					<h1>WEATHER ANALYSIS</h1>
-					<h2>Analyse it ,Improvise it</h2>
-					<p class="p-cls">Lorem ipsum dolor sit amet, consectetur
-						adipiscing elit.</p>
+					<h2>Analyse it,Improvise it</h2>
+					<p class="p-cls">SGSITS Indore</p>
 				</div>
 
 			</div>
@@ -141,7 +138,7 @@ table#t01 th {
 						<tr>
 							<td>4</td>
 							<td>-0.99 to 0.99</td>
-							<td>Near Normal Condition</td>
+							<td> Normal Condition</td>
 						</tr>
 						<tr>
 							<td>5</td>
@@ -165,10 +162,10 @@ table#t01 th {
 			</div>
 	</section>
 	<!--PARALLAX LIKE / STATS SECTION END  -->
-	<%@page language="java" import="java.util.*" %>
+	
 	<% 
  	    Map<String, String> stationCodeNames = StationRetrival.st_retrival_map();
-	
+	          
 	%>
 	<section id="works">
 		<div class="container">
@@ -191,6 +188,7 @@ table#t01 th {
 						<%for(String stationCode : stationCodeNames.keySet()) {%>
 							<option value="<%=stationCode%>"><%=stationCode+" - "+stationCodeNames.get(stationCode)%></option>
 						<% } %>
+						
 						</select> 
 						
 						<select name="years">
@@ -198,12 +196,12 @@ table#t01 th {
 							<option value="2006">2006</option>
 							<option value="2007">2007</option>
 							<option value="2008">2008</option>
-							<option value="2008">2009</option>
-							<option value="2008">2010</option>
-							<option value="2008">2011</option>
-							<option value="2008">2012</option>
-							<option value="2008">2013</option>
-							<option value="2008">2014</option>
+							<option value="2009">2009</option>
+							<option value="2010">2010</option>
+							<option value="2011">2011</option>
+							<option value="2012">2012</option>
+							<option value="2013">2013</option>
+							<option value="2014">2014</option>
 						</select> <br>
 						<br> <input type="submit">
 						</form>
@@ -219,22 +217,23 @@ table#t01 th {
 					<p class="works">Select this action to see the precipitation
 						conditions on Map</p>
 					<div class="alert alert-danger">
-						<form action="assets/img/rdi.jpg" class="form1" >
+						<form action="map.jsp" class="form1" >
 						<select name="years">
 							<option value="2005">2005</option>
 							<option value="2006">2006</option>
 							<option value="2007">2007</option>
 							<option value="2008">2008</option>
-							<option value="2008">2009</option>
-							<option value="2008">2010</option>
-							<option value="2008">2011</option>
-							<option value="2008">2012</option>
-							<option value="2008">2013</option>
-							<option value="2008">2014</option>
+							<option value="2009">2009</option>
+							<option value="2010">2010</option>
+							<option value="2011">2011</option>
+							<option value="2012">2012</option>
+							<option value="2013">2013</option>
+							<option value="2014">2014</option>
 						</select> <br>
+						<br>
 						<br> <input type="submit">
 						</form>
-
+                       
 						<h3>See On Map</h3>
 						<h5>
 							<a href="#"><strong>Click Here </strong> </a>to see past
@@ -243,6 +242,7 @@ table#t01 th {
 					</div>
 
 				</div>
+				<div>
 				<div class="col-md-4 col-sm-4 ">
 					<p class="works">Select this action to see the chances of
 						Drought on Map in India</p>
@@ -254,7 +254,8 @@ table#t01 th {
 						<% } %>
 
 						</select> <br>
-						<br> <input type="submit">
+						<br> <br>
+						<input type="submit">
 						</form>
 
 						<h3>See On Map</h3>
@@ -271,18 +272,17 @@ table#t01 th {
 	</section>
 	<!--WORKS / PORTFOLIO SECTION END  -->
 	<div id="video-sec" class="player"
-		data-property="{videoURL:'https://www.youtube.com/watch?v=Ycv5fNd4AeM',containment:'self',autoPlay:true, mute:true, startAt:0, opacity:1,mute: true,showControls:false}">
+		data-property="{videoURL:'https://www.youtube.com/watch?v=FEq8P2hNY74',containment:'self',autoPlay:true, mute:true, startAt:0, opacity:1,mute: true,showControls:false}">
 		<!-- change https://www.youtube.com/watch?v=Ycv5fNd4AeM to your youtube url-->
 		<div class="overlay">
 			<div class="container">
 				<div class="row text-center">
 					<div class="col-md-12">
-						<h1>HERE IS BACKGROUND VEDIO</h1>
+						<h1></h1>
 						<h4>
-							This scripts uses plugin <strong>jquery.mb.YTPlayer</strong>
-
+							
 						</h4>
-						<h4>to play video in background of divs</h4>
+						<h4></h4>
 					</div>
 				</div>
 			</div>
@@ -304,7 +304,7 @@ table#t01 th {
 
 
 				<div class="col-md-12">
-					<h3>102, Melborne City,</h3>
+					<h3>, Melborne City,</h3>
 					<h3>United States - 600 - 009 -00.</h3>
 					<h3>
 						<strong>Email :</strong> info@yourdomain.com
@@ -337,8 +337,8 @@ table#t01 th {
 	</section>
 	<!-- CLIENTS SECTION END-->
 	<footer>
-		© 2015 YourDomain.com | <a href="http://www.designbootstrap.com/"
-			target="_blank">by DesignBootstrap</a>
+		© 2015 gm3.com | <a href="http://www.designbootstrap.com/"
+			target="_blank">by GMcube</a>
 	</footer>
 	<!-- FOOTER SECTION END-->
 	<!-- REQUIRED SCRIPTS FILES -->

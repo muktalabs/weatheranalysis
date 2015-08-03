@@ -67,6 +67,17 @@ section {
 ==================================*/
 
 /*STYLE OF BACKGROUND IMAGE*/
+#home1 {
+    background: url(../img/8.jpeg) no-repeat center center; /*Full Witdth background image*/
+    padding: 0;
+    -webkit-background-size: cover;
+    background-size: cover;
+    -moz-background-size: cover;
+    min-height: 600px;
+}
+
+
+
 #home {
     background: url(../img/dro2.jpg) no-repeat center center; /*Full Witdth background image*/
     padding: 0;

@@ -1,3 +1,8 @@
+<%@page language="java" import="java.util.*" %>
+<%@ page import="com.muktalabs.weatheranalysis.monthly.mapred.*"%>
+<%@page import="java.util.*,com.muktalabs.weatheranalysis.util.StationRetrival"%>
+
+
 <html>
 <head>
 
@@ -33,14 +38,36 @@ font-size:150%;
 }
 .cd{
 position:absolute;
-top:0%;
+top:90%;
 
 }
+.r {
+	right: 70%;
+	top: 50%;
+	position: absolute;
+	font-size: 200%;
+}
+.q {
+	right: 60%;
+	top: 66%;
+	position: absolute;
+	font-size: 125%;
+}
+
+
+.w {
+	right: 60%;
+	top: 90%;
+	position: absolute;
+	font-size: 200%;
+}
+
+
 
 #rdi {
-	right: 40%;
-	top: 50%;
-	position: relative;
+	right: 70%;
+	top: 20%;
+	position: absolute;
 	font-size: 300%;
 }
 
@@ -98,7 +125,7 @@ table#t01 th {
 		</div>
 	</div>
 	<!-- NAVBAR CODE END -->
-	<div id="home">
+	<div id="home1">
 		<div class="overlay">
 			<!-- overylay class usage -->
 			<div class="container">
@@ -116,15 +143,61 @@ table#t01 th {
 							<%
 								String stationCode = request.getParameter("station");
 								String year = request.getParameter("years");
-								
-								
+								StationRetrival s = new StationRetrival();                                  
+		                        
+								String stname= s.st_name_retrival(stationCode);
+								int st,yr;
+								 st=Integer.parseInt(stationCode);
+								 yr=Integer.parseInt(year);
+								 
+								RdiCalculations r = new RdiCalculations();                                  
+		                        double rdi_page =  r.normalizedrdi(st,yr);
+		                        String rdi_status = "";
+		                        if(rdi_page >= 2 && rdi_page<500){
+		                        	rdi_status = "Extreme Wet Condition";
+		                        } else if(rdi_page>=1.55 && rdi_page<=1.99){
+		                        	
+		                        	rdi_status = "Very Wet Condition";
+		                        }
+                               else if(rdi_page>=1.0 && rdi_page<=1.49){
+		                        	
+		                        	rdi_status = "Moderately Wet Condition";
+		                        }
+                               else if(rdi_page>=-0.99 && rdi_page<=0.99){
+		                        	
+		                        	rdi_status = "Normal Condition";
+		                        }
+                               else if(rdi_page>=-1.49 && rdi_page<=-1.0){
+		                        	
+		                        	rdi_status = "Moderately Dry Condition";
+		                        }
+                               else if(rdi_page>=-1.99 && rdi_page<=-1.5){
+		                        	
+		                        	rdi_status = "Severely Dry Condition";
+		                        }
+                               else if( rdi_page<=-1.99){
+                            	   
+                            	   rdi_status = "Extreme Dry Condition";
+                               }
+                               else {
+                            	   rdi_status="Data Not Available";
+                               }
 							%>
-							<div class="row text-center">
+							<%if(rdi_page!=10000){ %>
+							<label class="r">RDI is <%=rdi_page%></label>
+						<%} 
+						else { %>
+					<label class="r">RDI is not present</label>
+						<%} %>
+							<label class="q" >(<%=rdi_status%>)</label><br>
+									
+								<div class="row text-center">
 
 								<div class="col-md-4 col-sm-4 col-xs-12">
 									<div class="cd">
 									<label class="st">Station &nbsp;</label>
-									<label class="ans"><%=stationCode%></label><br>
+									<label class="ans"><%=stationCode%></label>
+									<label class="ans">(<%=stname%>)</label><br>
 									<label class="st">Year &nbsp;</label>
 									<label class="ans"><%=year%></label>
 </div>
@@ -152,7 +225,7 @@ table#t01 th {
 										<tr>
 											<td>4</td>
 											<td>-0.99 to 0.99</td>
-											<td>Near Normal Condition</td>
+											<td> Normal Condition</td>
 										</tr>
 										<tr>
 											<td>5</td>
@@ -185,8 +258,8 @@ table#t01 th {
 	<!--HOME SECTION END  -->
 	<!-- CLIENTS SECTION END-->
 	<footer>
-		© 2015 YourDomain.com | <a href="http://www.designbootstrap.com/"
-			target="_blank">by DesignBootstrap</a>
+		© 2015 gm3.com | <a href="http://www.designbootstrap.com/"
+			target="_blank">by GM3</a>
 	</footer>
 	<!-- FOOTER SECTION END-->
 	<!-- REQUIRED SCRIPTS FILES -->
