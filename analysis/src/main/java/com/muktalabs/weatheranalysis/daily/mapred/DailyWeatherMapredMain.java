@@ -33,8 +33,7 @@ public class DailyWeatherMapredMain {
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(Text.class);
 
-		FileInputFormat.addInputPath(job, new Path(
-				"/mnt/data/workspace/weatheranalysis/analysis/data/small"));
+		FileInputFormat.addInputPath(job, new Path("/mnt/data/workspace/weatheranalysis/analysis/data/half7"));
 		Path out = new Path("/mnt/data/workspace/weatheranalysis/analysis/mapred_test/daily");
 		File outDir = new File(out.toString());
 		FileUtil.fullyDelete(outDir);

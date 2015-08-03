@@ -1,33 +1,25 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-	<parent>
-	    <groupId>com.muktalabs.weatheranalysis</groupId>
-	    <artifactId>parent</artifactId>
-	    <version>1.0</version>
-	    <relativePath>../parent/pom.xml</relativePath>
-	</parent>
+	<groupId>com.muktalabs.weatheranalysis</groupId>
+	<artifactId>analysis</artifactId>
+	<version>1.0</version>
+	<packaging>jar</packaging>
+	<name>analysis</name>
+	<url>http://maven.apache.org</url>
 
-  <groupId>com.muktalabs.weatheranalysis</groupId>
-  <artifactId>analysis</artifactId>
-  <version>1.0</version>
-  <packaging>jar</packaging>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 
-  <name>analysis</name>
-  <url>http://maven.apache.org</url>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-
-   <dependencies>
+	<dependencies>
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-common</artifactId>
 			<version>2.4.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-client</artifactId>
@@ -58,9 +50,9 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
-  </dependencies>
-  
- 	<build>
+	</dependencies>
+
+	<build>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -75,5 +67,5 @@
 			</plugins>
 		</pluginManagement>
 	</build>
- 
+
 </project>
